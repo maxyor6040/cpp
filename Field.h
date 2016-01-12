@@ -2,12 +2,7 @@
 #ifndef FIELD_H_
 #define FIELD_H_
 
-enum Type{ INT , OBJECT};
-
-class FieldNotFound: public std::exception {
-};
-class FieldNotAccessible: public std::exception {
-};
+#include "Object.h"
 
 class Field  {
 private:

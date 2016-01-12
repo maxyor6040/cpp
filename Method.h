@@ -1,24 +1,22 @@
-
 #ifndef METHOD_H_
 #define METHOD_H_
 
+//#include "Object.h"
+typedef void(*Func)(Object *);
 
-
-typedef void(*Func)(Object*);
-
-class Method{
+class Method {
 private:
 
 
 public:
 
-	std::string getDeclaringClass() const;
+    std::string getDeclaringClass() const;
 
-	Method(std::string name,std::string className,Func f);
+    Method(std::string name, std::string className, Func f);
 
-	virtual void invoke(Object* const obj);
-	
-	std::string name() const;
+    virtual void invoke(Object *const obj);
+
+    std::string name() const;
 
 };
 

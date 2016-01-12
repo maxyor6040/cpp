@@ -1,16 +1,36 @@
 #ifndef CLASS_H_
 #define CLASS_H_
 
+#include <list>
+#include <string>
+#include "Exceptions.h"
+
+using std::list;
+using std::string;
+
+class Method;
+class Field;
+class Object;
+typedef void(*Func)(Object *);
 
 
 class Class{
-
+	list<Method> methods;
+	list<Method> staticMethods;
+	list<Field> fields;
+	list<Field> staticFields;
+	Class *ancestor;
+	string name;
 private:
+
 public:
 	/*
 		you need to add a constructor that gets a pointer to the Base class and the name of this class.
 		you must also add getSuperClass() that returns a pointer to the super class
 	*/
+	Class(Class *ancestor, string name);
+
+	Class* getSuperClass();
 	
 	Object* newIstance();
 
