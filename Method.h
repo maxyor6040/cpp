@@ -1,12 +1,17 @@
 #ifndef METHOD_H_
 #define METHOD_H_
 
-//#include "Object.h"
+#include <string>
+#include "Object.h"
+
+
 typedef void(*Func)(Object *);
 
 class Method {
 private:
-
+    std::string methodName;
+    std::string className;
+    Func func;
 
 public:
 
