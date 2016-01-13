@@ -13,7 +13,6 @@ private:
     std::string fieldName;
     std::string className;
     Type type;
-
 public:
 	Field(std::string fieldName, std::string className);
 

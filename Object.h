@@ -2,6 +2,10 @@
 #define OBJECT_H_
 
 #include <string>
+#include <map>
+
+using std::map;
+using std::string;
 
 class Class;
 
@@ -10,11 +14,13 @@ class Field;
 class Object {
 private:
     Class *objectClass;
-    std::list<Field> fields;
+    map<string, Object*> objectFields;
+    map<string, int> intFields;
 public:
 
-    // you must add a function called getClass() that returns a pointer to the object's class
-    Class *getClass();
+    Object(Class *objectClass, const map<string, Object *>& objectFields, const map<string, int>& intFields);
+
+    Class* getClass();
 
     int getInt(std::string name);
 

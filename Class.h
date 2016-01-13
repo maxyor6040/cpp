@@ -3,36 +3,54 @@
 
 #include <list>
 #include <string>
+#include <map>
 #include "Exceptions.h"
 
 
 using std::list;
 using std::string;
+using std::map;
 
 class Method;
-
 class Field;
-
 class Object;
 
 typedef void(*Func)(Object *);
 
 
 class Class {
-    list<Method> methods;
-    list<Method> staticMethods;
-    list<Field> fields;
-    list<Field> staticFields;
-    Class *ancestor;
-    string name;
-    Object *dummy;
 private:
+    list<Method> methods;
+    map<string, Object*> objectFields;
+    map<string, int> intFields;
+    map<string, Object*> staticObjectFields;
+    map<string, int> staticIntFields;
+    Class *ancestor;
 
+    map<string, int> getIntFieldsRecursively() {
+        map<string, int> res;
+        if (ancestor != NULL)
+            res = ancestor->getIntFieldsRecursively();
+
+        for(map<string, int>::iterator i = intFields.begin(); i!=intFields.end();i++) {
+            res[i->first] = i->second;
+        }
+        return res;
+    }
+
+    std::map<std::string, Object*> getObjectFieldsRecursively() {
+        map<string, Object*> res;
+        if (ancestor != NULL)
+            res = ancestor->getObjectFieldsRecursively();
+
+        for(map<string, Object*>::iterator i = objectFields.begin(); i!=objectFields.end();i++) {
+            res[i->first] = i->second;
+        }
+        return res;
+    }
 public:
-    /*
-        you need to add a constructor that gets a pointer to the Base class and the name of this class.
-        you must also add getSuperClass() that returns a pointer to the super class
-    */
+    string name;
+
     Class(Class *ancestor, string name);
 
     Class *getSuperClass();
@@ -40,7 +58,6 @@ public:
     Object *newIstance();
 
     void addMethod(std::string name, Func func);
-
 
     void addInstanceField(std::string name, Type t);
 
@@ -61,7 +78,6 @@ public:
     Object *getObj(std::string name);
 
     void setObj(std::string name, Object *value);
-
 
 };
 
