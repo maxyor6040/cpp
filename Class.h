@@ -2,21 +2,21 @@
 #define CLASS_H_
 
 #include <list>
-#include <string>
 #include <map>
+#include "Method.h"
+#include "Field.h"
 #include "Exceptions.h"
-
+#include "Object.h"
 
 using std::list;
 using std::string;
 using std::map;
 
-class Method;
 class Field;
-class Object;
+class Method;
+
 
 typedef void(*Func)(Object *);
-
 
 class Class {
 private:
@@ -55,7 +55,7 @@ public:
 
     Class *getSuperClass();
 
-    Object *newIstance();
+    Object *newInstance();
 
     void addMethod(std::string name, Func func);
 

@@ -1,10 +1,7 @@
 
-using namespace std;
-#include <iostream>
 #include "Field.h"
 
 Field::Field(std::string fieldName, std::string className):fieldName(fieldName), className(className) {
-    intValue=0;
     type=INT;
 }
 

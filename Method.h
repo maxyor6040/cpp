@@ -1,11 +1,16 @@
 #ifndef METHOD_H_
 #define METHOD_H_
 
-#include <string>
+
 #include "Object.h"
+#include "Exceptions.h"
+
+
+class Object;
 
 
 typedef void(*Func)(Object *);
+
 
 class Method {
 private:
@@ -16,6 +21,8 @@ private:
 public:
 
     std::string getDeclaringClass() const;
+
+    Method() {}
 
     Method(std::string name, std::string className, Func f);
 

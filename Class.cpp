@@ -4,18 +4,12 @@
 
 #include <assert.h>
 #include "Class.h"
-#include "Object.h"
-#include "Field.h"
-#include "Method.h"
-
-#include "Exceptions.h"
-
 
 Class::Class(Class *ancestor, string name) : ancestor(ancestor), name(name) { }
 
 Class *Class::getSuperClass() { return ancestor; }
 
-Object *Class::newIstance() {
+Object *Class::newInstance() {
 
     Object *newObject = new Object(this, getObjectFieldsRecursively(), getIntFieldsRecursively());
     return newObject;

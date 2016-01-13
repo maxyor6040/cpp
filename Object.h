@@ -1,15 +1,15 @@
 #ifndef OBJECT_H_
 #define OBJECT_H_
 
-#include <string>
 #include <map>
-
-using std::map;
-using std::string;
+#include <string>
+#include "Class.h"
 
 class Class;
 
-class Field;
+
+using std::map;
+using std::string;
 
 class Object {
 private:

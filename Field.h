@@ -6,10 +6,10 @@
 #include "Object.h"
 #include "Exceptions.h"
 
+class Object;
+
 class Field  {
 private:
-    int intValue;
-    Object* objectValue;
     std::string fieldName;
     std::string className;
     Type type;

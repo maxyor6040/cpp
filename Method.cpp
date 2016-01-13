@@ -1,4 +1,5 @@
 
+
 #include "Method.h"
 
 Method::Method(std::string name, std::string className, Func f):className(className),methodName(name), func(f) { }

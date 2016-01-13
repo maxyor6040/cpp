@@ -1,11 +1,7 @@
 //
 // Created by Arye on 12/01/2016.
 //
-
 #include "Object.h"
-#include "Class.h"
-#include "Method.h"
-#include "Exceptions.h"
 
 Object::Object(Class *objectClass, const map<string, Object *>& objectFields, const map<string, int>& intFields) :
         objectClass(objectClass), objectFields(objectFields), intFields(intFields) {}
