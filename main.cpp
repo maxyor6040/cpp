@@ -15,5 +15,6 @@ int main() {
     a->setInt("x",5);
     cout << a->getInt("x") ;
 
+
     return 0;
 }
