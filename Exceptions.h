@@ -3,8 +3,6 @@
 #define EXCPETIONS_H_
 
 
-
-
 enum Type{ INT , OBJECT};
 
 class FieldNotFound: public std::exception {

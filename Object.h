@@ -3,26 +3,30 @@
 
 #include <string>
 
+class Class;
 
+class Field;
 
 class Object {
 private:
-
+    Class *objectClass;
+    std::list<Field> fields;
 public:
 
-	// you must add a function called getClass() that returns a pointer to the object's class
+    // you must add a function called getClass() that returns a pointer to the object's class
+    Class *getClass();
 
-	int getInt(std::string name);
+    int getInt(std::string name);
 
-	void setInt(std::string name, int value);
-	
-	Object* getObj(std::string name);
+    void setInt(std::string name, int value);
 
-	void setObj(std::string name, Object* value);
+    Object *getObj(std::string name);
 
-	virtual void invokeMethod(std::string name);
+    void setObj(std::string name, Object *value);
 
-	bool isInstanceOf(std::string c);
+    virtual void invokeMethod(std::string name);
+
+    bool isInstanceOf(std::string c);
 
 };
 
