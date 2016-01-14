@@ -4,6 +4,7 @@
 #include <map>
 #include <string>
 #include "Class.h"
+#include "Serialization.h"
 
 class Class;
 
@@ -16,6 +17,8 @@ private:
     Class *objectClass;
     map<string, Object*> objectFields;
     map<string, int> intFields;
+
+    friend class Serialization;
 public:
 
     Object(Class *objectClass, const map<string, Object *>& objectFields, const map<string, int>& intFields);

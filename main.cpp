@@ -1,20 +1,47 @@
-#include <iostream>
 #include "Object.h"
 #include "Class.h"
+#include "Exceptions.h"
+#include <assert.h>
+#include <iostream>
 
-using namespace std;
+using std::cout;
+
+bool Object_test1();
 
 int main() {
-    cout << "Hello, World!" << endl;
+	bool res = Object_test1();
+    std::cout << ((res) ? "true" : "false");
+	return 0;
+}
 
-    Class A_class(NULL,"A");//building new class,(super=null)
-    Class B_class(&A_class,"B");//B_class inherits A_class
-    A_class.addInstanceField("x",INT);
-    Object* a = A_class.newInstance();
-    cout << a->getInt("x") ; //prints 0
-    a->setInt("x",5);
-    cout << a->getInt("x") ;
+class A {
+};
 
+Class A_class(NULL, "A");
 
-    return 0;
+void g(Object* obj) {
+	obj->setInt("x", 1001); //works well
+
+	Object* o2 = A_class.newInstance();
+	o2->setInt("x", 2); //throws fieldnotaccessible (trying to   the value of field of another object)
+
+}
+
+bool Object_test1() {
+	//you can assume no call to get/set will be placed here.
+
+	A_class.addInstanceField("x", INT);
+	A_class.addMethod("g", g);
+
+	Object* obj = A_class.newInstance();
+	assert(obj->isInstanceOf("A"));
+
+	try {
+		obj->invokeMethod("g");
+		return false;
+	} catch (...) {
+
+	}
+
+	return true;
 }

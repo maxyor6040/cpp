@@ -13,6 +13,8 @@ private:
     std::string fieldName;
     std::string className;
     Type type;
+
+	void assertLegalAccess(Object *o);
 public:
 	Field(std::string fieldName, std::string className);
 

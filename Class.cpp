@@ -5,6 +5,9 @@
 #include <assert.h>
 #include "Class.h"
 
+bool Class::accessEnabled = false;
+Object* Class::currentContext = nullptr;
+
 Class::Class(Class *ancestor, string name) : ancestor(ancestor), name(name) { }
 
 Class *Class::getSuperClass() { return ancestor; }

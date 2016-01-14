@@ -2,6 +2,12 @@
 #define SERIALIZATION_H_
 
 
+#include "Object.h"
+#include <string>
+
+using std::string;
+
+class Object;
 
 class Serialization {
 private:

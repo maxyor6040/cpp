@@ -9,7 +9,10 @@ std::string Method::getDeclaringClass() const {
 }
 
 void Method::invoke(Object *const obj) {
+    Object* previousContext = Class::currentContext;
+    Class::currentContext = obj;
     func(obj);
+    Class::currentContext = previousContext;
 }
 
 std::string Method::name() const {

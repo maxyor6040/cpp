@@ -19,13 +19,17 @@ class Method;
 typedef void(*Func)(Object *);
 
 class Class {
-private:
+public:
     list<Method> methods;
     map<string, Object*> objectFields;
     map<string, int> intFields;
     map<string, Object*> staticObjectFields;
     map<string, int> staticIntFields;
     Class *ancestor;
+    string name;
+
+    static bool accessEnabled;
+    static Object * currentContext;
 
     map<string, int> getIntFieldsRecursively() {
         map<string, int> res;
@@ -48,8 +52,6 @@ private:
         }
         return res;
     }
-public:
-    string name;
 
     Class(Class *ancestor, string name);
 
@@ -79,6 +81,8 @@ public:
 
     void setObj(std::string name, Object *value);
 
+    static void setAccesible (bool boolean) { accessEnabled = boolean; }
 };
+
 
 #endif /* CLASS_H_ */

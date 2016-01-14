@@ -9,6 +9,11 @@ Object::Object(Class *objectClass, const map<string, Object *>& objectFields, co
 Class* Object::getClass() { return objectClass; }
 
 int Object::getInt(std::string name) {
+    if (Class::currentContext != this && !Class::accessEnabled)
+        throw  FieldNotAccessible();
+
+    if(objectClass->staticIntFields.find(name) != objectClass->staticIntFields.end())
+        return objectClass->staticIntFields[name];
 
     if (intFields.find(name) == intFields.end())
         throw FieldNotFound();
@@ -17,6 +22,13 @@ int Object::getInt(std::string name) {
 }
 
 void Object::setInt(std::string name, int value) {
+    if ((Class::currentContext != this) && (!Class::accessEnabled))
+        throw  FieldNotAccessible();
+
+    if(objectClass->staticIntFields.find(name) != objectClass->staticIntFields.end()) {
+        objectClass->staticIntFields[name] = value;
+        return;
+    }
     if (intFields.find(name) == intFields.end())
         throw FieldNotFound();
 
@@ -24,6 +36,12 @@ void Object::setInt(std::string name, int value) {
 }
 
 Object* Object::getObj(std::string name) {
+    if (Class::currentContext != this && !Class::accessEnabled)
+        throw  FieldNotAccessible();
+
+    if(objectClass->staticObjectFields.find(name) != objectClass->staticObjectFields.end())
+        return objectClass->staticObjectFields[name];
+
     if (objectFields.find(name) == objectFields.end())
         throw FieldNotFound();
 
@@ -31,6 +49,14 @@ Object* Object::getObj(std::string name) {
 }
 
 void Object::setObj(std::string name, Object *value) {
+    if (Class::currentContext != this && !Class::accessEnabled)
+        throw  FieldNotAccessible();
+
+    if(objectClass->staticObjectFields.find(name) != objectClass->staticObjectFields.end()) {
+        objectClass->staticObjectFields[name] = value;
+        return;
+    }
+
     if (objectFields.find(name) == objectFields.end())
         throw FieldNotFound();
 
