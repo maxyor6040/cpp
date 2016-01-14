@@ -15,8 +15,10 @@ private:
 public:
 
 	static string serialize(Object& o);
-	
+
 	static Object* deserialize(string s);
+
+	static Object* deserialize_aux(string& s);
 
 };
 
