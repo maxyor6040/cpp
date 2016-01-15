@@ -12,24 +12,22 @@ using std::string;
 using std::stringbuf;
 
 string Serialization::serialize(Object &o) {
-/*
-    string res;
+
+    string ptrStr;
 
     char * str = (char*)malloc(sizeof(char) * (1 + sizeof(void*)));
     sprintf(str, "%p", o.objectClass);
 
-    res = "objectClass";
-    res += "|";
-    res += str;
-    res += "|";
+    ptrStr = "objectClass";
+    ptrStr += "#";
     Class * ptr;
+    std::cout <<std::endl;
+
     std::cout << str << std::endl;
     sscanf(str, "%p", &ptr);
     std::cout << ptr <<std::endl;
     std::cout << str << std::endl;
 
-    return res;
-    */
     //example : x#5#y#56#z#11#obj1#<y#2#D#3>#obj2#<a#1#b#4#myobj1#<a#33#f#32>#myobj2#<b#23#5#v#66>#>#
     //TODO: add class pointer(?) to serialization
     //TODO: maybe add "setAccessible(true)" at the beginning of the function and revert the changes at the end
