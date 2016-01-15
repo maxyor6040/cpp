@@ -6,7 +6,7 @@
 #include "Class.h"
 
 bool Class::accessEnabled = false;
-Object* Class::currentContext = nullptr;
+Object* Class::currentContext = NULL;
 
 Class::Class(Class *ancestor, string name) : ancestor(ancestor), name(name) { }
 

@@ -51,6 +51,7 @@ bool Object_test1() {
 }
 
 bool Object_test2() {
+/*
     //you can assume no call to get/set will be placed here.
     Class::setAccesible(true);
     A_class.addInstanceField("x", INT);
@@ -71,5 +72,22 @@ bool Object_test2() {
     objA->setObj("subObjAgain", objB);
     string s = Serialization::serialize(*objA);
     Serialization::deserialize(s);
+*/
+
+    Class C_class(&A_class, "C");
+    C_class.addInstanceField("x", INT);
+    C_class.addInstanceField("y", INT);/*
+    C_class.addInstanceField("subObj", OBJECT);
+    C_class.addInstanceField("subObjAgain", OBJECT);*/
+    Object *objC = C_class.newInstance();
+    string s2 = Serialization::serialize(*objC);
+    Object * deserializedObj = Serialization::deserialize(s2);
+    std::cout << "A_class ptr: " << &A_class <<std::endl;
+    std::cout << "C_class ptr: " << &C_class <<std::endl;
+    if (&C_class == deserializedObj->getClass())
+	std::cout <<"AHA!";
+    else
+	std::cout << "Nope";
+
     return true;
 }
