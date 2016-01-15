@@ -75,7 +75,8 @@ Object *Serialization::deserialize_aux(string &s) {
 	}
 	else if (fieldName.compare(strNULL()) == 0){//value is empty object
 	    firstIndex = s.find("#");
-	    s.erase(0, firstIndex + 1);
+	    s.erase(0, firstIndex + 2);
+	    return nullptr;
 	}
         else {//value is int
             firstIndex = s.find("#");
