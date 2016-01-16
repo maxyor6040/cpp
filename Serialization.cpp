@@ -31,7 +31,7 @@ string Serialization::serialize(Object &o) {
     //TODO: maybe add "setAccessible(true)" at the beginning of the function and revert the changes at the end
     map<string, int> &intFields = o.intFields;
     for (map<string, int>::const_iterator it = intFields.begin(); it != intFields.end(); ++it) {
-        res += it->first + "#" + std::to_string(it->second) + "#";
+        res += it->first + "#" + std::to_string((long long int)it->second) + "#";
     }
     map<string, Object *> &objectFields = o.objectFields;
     for (map<string, Object *>::const_iterator it = objectFields.begin(); it != objectFields.end(); ++it) {
@@ -54,7 +54,7 @@ Object *Serialization::deserialize_aux(string &s) {
     string fieldName;
     string fieldIntValue;
     Object *fieldObjValue;
-    Class *objectClass = nullptr;
+    Class *objectClass = NULL;
     while (s.length() != 0) {
         if (s[0] == '>') {//end of object
             s.erase(0, 2);
@@ -76,7 +76,7 @@ Object *Serialization::deserialize_aux(string &s) {
 	else if (fieldName.compare(strNULL()) == 0){//value is empty object
 	    firstIndex = s.find("#");
 	    s.erase(0, firstIndex + 2);
-	    return nullptr;
+	    return NULL;
 	}
         else {//value is int
             firstIndex = s.find("#");
