@@ -81,7 +81,7 @@ public:
 
     void setObj(std::string name, Object *value);
 
-    static void setAccesible (bool boolean) { accessEnabled = boolean; }
+    static void setAccessible (bool boolean) { accessEnabled = boolean; }
 };
 
 
